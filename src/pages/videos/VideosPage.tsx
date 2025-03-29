@@ -2,6 +2,9 @@ import React from "react";
 import Navbar from "../home/Navbar";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
+import { IoVideocam } from "react-icons/io5";
+import Wrapper from "@/components/Wrapper";
+import Breadcrumb from "@/components/ui/custom/CustomBreadcrumb";
 
 const images = [
   {
@@ -56,29 +59,35 @@ const images = [
 
 export default function VideosPage() {
   return (
-    <section className="flex flex-col w-full gap-4">
-      <Navbar />
+    <Wrapper>
       <div className="container mx-auto px-4 flex flex-col gap-4 pb-4">
         <div className="flex items-center justify-between w-full">
-          <h1 className="text-xl font-semibold ">My Videos</h1>
-          <Link to={"/videos/create"}>
-            <Button>Generate Video</Button>
-          </Link>
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Videos", href: "/videos" },
+            ]}
+          />
+
+          <Button className="bg-gradient-to-r from-blue-500 to-purple-500">
+            <IoVideocam />
+            Generate Video
+          </Button>
         </div>
-        <div className="grid grid-cols-7 gap-4 mt-4">
-          {images.map((image, index) => (
-            <Link to={`/video/${index}`} key={index}>
+        <div className="grid grid-cols-6 gap-4 mt-4">
+          {images?.map((image, index) => (
+            <Link to={`/videos/${index}`} key={index}>
               <div className="w-full h-64 overflow-hidden rounded-lg shadow-lg">
                 <img
                   src={image.url}
                   alt={`Image ${index + 1}`}
-                  className="object-cover w-full h-full transition-transform duration-300 transform hover:scale-105"
+                  className="object-cover shadow w-full h-full transition-transform duration-300 transform hover:scale-105"
                 />
               </div>
             </Link>
           ))}
         </div>
       </div>
-    </section>
+    </Wrapper>
   );
 }

@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 import Navbar from "./Navbar";
 import { Button } from "@/components/ui/button";
+import { IoVideocam } from "react-icons/io5";
+import Wrapper from "@/components/Wrapper";
+import { Link } from "react-router";
 
 const images = [
   {
@@ -63,15 +66,21 @@ export default function HomePage() {
     columns[i % columnCount].push(images[i]);
   }
   return (
-    <section className="h-dvh relative flex flex-col  mx-auto items-center w-full px-4 overflow-hidden">
-      <Navbar />
-      <div className="absolute top-[25%] right-0 left-0">
+    <Wrapper className="h-dvh relative  mx-auto items-center overflow-hidden">
+      <div className="absolute  top-[25%] right-0 left-0">
         <div className="flex flex-col items-center justify-center text-center gap-6">
-          <h1 className="text-6xl my-auto z-50 leading-tight font-bold text-center ">
+          <h1 className="text-6xl my-auto  leading-tight font-bold text-center ">
             Create videos at <br />
-            <span className="text-primary text-5xl">the speed of thought.</span>
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent text-5xl">
+              the speed of thought.
+            </span>
           </h1>
-          <Button className="">Get Stated</Button>
+          <Link to="/videos" className="cursor-pointer z-50">
+            <Button className="bg-gradient-to-r cursor-pointer from-blue-500 to-purple-500 px-6">
+              <IoVideocam />
+              Get Stated
+            </Button>
+          </Link>
         </div>
         <div
           className="w-full min-w-7xl z-0 -mt-24 px-4 grid grid-cols-7"
@@ -109,7 +118,7 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-      <div className="bg-gradient-to-t from-white via-transparent to-transparent  absolute bottom-0 left-0 right-0 h-[50%]" />
-    </section>
+      <div className="bg-gradient-to-t from-white via-transparent to-transparent  absolute bottom-0 left-0 right-0 h-[40%]" />
+    </Wrapper>
   );
 }
