@@ -60,6 +60,7 @@ export default function SingleVideoView() {
 
         <video
           controls
+          preload="metadata"
           src={video?.url}
           className="max-w-4xl max-h-[calc(100%-50px)] m-auto"
         />

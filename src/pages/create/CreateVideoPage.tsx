@@ -1,28 +1,32 @@
 import Navbar from "../home/Navbar";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import Wrapper from "@/components/Wrapper";
+import { useState } from "react";
 import { IoSparklesSharp } from "react-icons/io5";
 
 export default function CreateVideoPage() {
+  const [finalScript, setFinalScript] = useState<string>(dummyData);
   return (
-    <section className="flex relative flex-col w-full gap-4">
-      <Navbar />
-
+    <Wrapper className="h-dvh pb-4">
       <h2 className="text-lg font-semibold text-center ">
         Final Script for video
       </h2>
-      <div className="h-[calc(100dvh-130px)] w-full flex pb-16 overflow-y-auto flex-col gap-4 ">
-        <pre
-          contentEditable
-          className="whitespace-pre-wrap rounded-md p-4  max-w-2xl mx-auto  text-base font-sans "
-        >
-          {dummyData}
-        </pre>
-      </div>
-      <Button className="absolute bottom-4 hover:scale-105 transition-all duration-200 right-0 left-0 w-fit mx-auto  bg-gradient-to-r from-blue-500 to-purple-500">
+
+      <Textarea
+        value={finalScript}
+        onChange={(e) => {
+          setFinalScript(e.target.value);
+        }}
+        className="whitespace-pre-wrap flex-1 rounded-md p-4 max-w-3xl resize-none mx-auto  text-base font-sans "
+        placeholder="Write your script here..."
+      />
+
+      <Button className=" hover:scale-105 transition-all duration-200 right-0 left-0 w-fit mx-auto  bg-gradient-to-r from-blue-500 to-purple-500">
         <IoSparklesSharp />
         Generate the Video
       </Button>
-    </section>
+    </Wrapper>
   );
 }
 
