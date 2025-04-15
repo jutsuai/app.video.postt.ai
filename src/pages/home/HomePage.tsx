@@ -58,6 +58,7 @@ const images = [
 
 export default function HomePage() {
   const columnCount = 7;
+  const middleCount = Math.floor(columnCount / 2);
 
   const gap = 16;
   const columns: any = Array.from({ length: columnCount }, () => []);
@@ -83,8 +84,9 @@ export default function HomePage() {
           </Link>
         </div>
         <div
-          className="w-full min-w-7xl z-0 -mt-24 px-4 grid grid-cols-7"
+          className="w-full min-w-7xl z-0 -mt-24 px-4 grid"
           style={{
+            gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
             gap: `${gap}px`,
           }}
         >
@@ -96,13 +98,7 @@ export default function HomePage() {
                 flexDirection: "column",
                 gap: `${gap}px`,
                 marginTop: `${
-                  index === 0 || index === 6
-                    ? 0
-                    : index === 1 || index === 5
-                    ? 8
-                    : index === 2 || index === 4
-                    ? 14
-                    : 20
+                  5 * (middleCount - Math.abs(index - middleCount))
                 }rem`,
               }}
             >
